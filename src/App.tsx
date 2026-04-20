@@ -206,14 +206,14 @@ const WelcomeScreen = ({ onComplete }: { onComplete: () => void }) => {
   }, [onComplete]);
 
   return (
-    <div className={`fixed inset-0 z-50 bg-black flex items-center justify-center transition-opacity duration-1000 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
+    <div className={`fixed inset-0 z-50 bg-black flex items-center justify-center transition-opacity duration-1000 ${fadeOut ? 'opacity-0' : 'opacity-100'} safe-area-top safe-area-bottom`}>
       <div className="relative w-full h-full flex items-center justify-center">
         {/* Video Background - Responsive sizing */}
         <video
           autoPlay
           muted
           playsInline
-          className="w-auto h-auto max-w-[95vw] max-h-[80vh] lg:max-h-[85vh] object-contain"
+          className="w-auto h-auto max-w-[90vw] max-h-[70vh] lg:max-h-[85vh] object-contain"
           style={{ 
             objectPosition: 'center center'
           }}
@@ -231,11 +231,11 @@ const WelcomeScreen = ({ onComplete }: { onComplete: () => void }) => {
         
         {/* Centered content container with proper safe area */}
         <div className="absolute inset-0 flex flex-col items-center justify-center px-4 lg:px-0" style={{ 
-          paddingBottom: '140px',
-          paddingTop: '60px'
+          paddingBottom: '120px',
+          paddingTop: '50px'
         }}>
           {/* Content positioned at center */}
-          <div className="text-center space-y-6 lg:space-y-8 max-w-4xl mx-auto">
+          <div className="text-center space-y-4 lg:space-y-8 max-w-4xl mx-auto">
             {/* Loading Animation */}
             <div className="flex items-center justify-center space-x-2">
               <div className="w-3 h-3 lg:w-4 lg:h-4 rounded-full bg-cyber-pink animate-pulse shadow-[0_0_20px_#ff71ce]" />
@@ -244,11 +244,11 @@ const WelcomeScreen = ({ onComplete }: { onComplete: () => void }) => {
             </div>
             
             {/* Welcome Text */}
-            <div className="space-y-3 lg:space-y-4">
-              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl lg:text-6xl font-bold tracking-tighter text-white uppercase neon-text animate-pulse">
+            <div className="space-y-2 lg:space-y-4">
+              <h1 className="font-display text-2xl sm:text-3xl lg:text-5xl lg:text-6xl font-bold tracking-tighter text-white uppercase neon-text animate-pulse">
                 LAURA IZQUIERDO
               </h1>
-              <p className="text-cyber-pink font-mono text-sm sm:text-base lg:text-lg lg:text-xl uppercase tracking-widest">
+              <p className="text-cyber-pink font-mono text-xs sm:text-sm lg:text-lg lg:text-xl uppercase tracking-widest">
                 Portafolio Interactivo
               </p>
             </div>
@@ -259,7 +259,7 @@ const WelcomeScreen = ({ onComplete }: { onComplete: () => void }) => {
                 setFadeOut(true);
                 setTimeout(onComplete, 1000);
               }}
-              className="mt-8 lg:mt-12 px-6 lg:px-8 py-2.5 lg:py-3 glass-panel rounded-full border border-cyber-pink/30 text-cyber-pink text-xs lg:text-sm font-bold uppercase tracking-widest hover:bg-cyber-pink/10 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,113,206,0.4)] hover:scale-105"
+              className="mt-6 lg:mt-12 px-6 lg:px-8 py-3 lg:py-3 glass-panel rounded-full border border-cyber-pink/30 text-cyber-pink text-xs lg:text-sm font-bold uppercase tracking-widest hover:bg-cyber-pink/10 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,113,206,0.4)] hover:scale-105 mobile-touch-large"
             >
               Saltar introducción →
             </button>
@@ -980,13 +980,13 @@ export default function App() {
       
       {/* Main App Interface */}
       <div className={`flex flex-col lg:flex-row h-screen w-full bg-void-bg text-slate-200 overflow-hidden font-sans transition-opacity duration-1000 ${showWelcome ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-        {/* Left Side: Chat (60% or 30% on desktop, 100% on mobile) */}
-        <section className={`${isRightPanelExpanded ? 'lg:w-[30%]' : 'lg:w-[60%]'} w-full lg:border-r lg:border-void-border bg-void-bg/50 backdrop-blur-sm transition-all duration-500 ease-in-out flex flex-col ${currentProject ? 'h-[50vh] lg:h-full' : 'h-full'}`}>
+        {/* Left Side: Chat (100% on mobile, responsive on desktop) */}
+        <section className={`${isRightPanelExpanded ? 'lg:w-[30%]' : 'lg:w-[60%]'} w-full lg:border-r lg:border-void-border bg-void-bg/50 backdrop-blur-sm transition-all duration-500 ease-in-out flex flex-col ${currentProject ? 'h-[45vh] lg:h-full' : 'h-full lg:h-full'}`}>
         {/* Header */}
-        <header className="p-4 lg:p-6 border-b border-void-border flex justify-between items-center">
+        <header className="p-4 lg:p-6 border-b border-void-border flex justify-between items-center safe-area-top">
           <div className="flex items-center gap-3">
-            <div className="w-3 h-3 rounded-full bg-cyber-pink animate-pulse shadow-[0_0_10px_#ff71ce]" />
-            <h1 className="font-display font-bold tracking-tighter text-lg lg:text-xl uppercase neon-text">VOID_OS // CORE</h1>
+            <div className="w-3 h-3 lg:w-4 lg:h-4 rounded-full bg-cyber-pink animate-pulse shadow-[0_0_10px_#ff71ce]" />
+            <h1 className="font-display font-bold tracking-tighter text-base lg:text-xl uppercase neon-text">VOID_OS</h1>
           </div>
           <div className="flex gap-2 lg:gap-4 text-slate-400">
             <Terminal size={16} className="w-4 h-4 lg:w-5 lg:h-5 hover:text-cyber-pink cursor-pointer transition-colors" />
@@ -995,7 +995,7 @@ export default function App() {
         </header>
 
         {/* Chat Messages */}
-        <div className="flex-1 overflow-y-auto p-4 lg:p-8 space-y-4 lg:space-y-6 custom-scrollbar">
+        <div className="flex-1 overflow-y-auto p-3 lg:p-8 space-y-3 lg:space-y-6 custom-scrollbar mobile-scroll">
           <AnimatePresence mode="popLayout">
             {messages.map((msg) => (
               <motion.div
@@ -1005,7 +1005,7 @@ export default function App() {
                 className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
               >
                 <div 
-                  className={`max-w-[85%] lg:max-w-[80%] p-3 lg:p-4 rounded-2xl shadow-lg whitespace-pre-wrap text-sm lg:text-base ${
+                  className={`max-w-[90%] lg:max-w-[80%] p-3 lg:p-4 rounded-2xl shadow-lg whitespace-pre-wrap text-sm lg:text-base ${
                     msg.sender === 'user' 
                       ? 'bg-cyber-pink text-void-bg font-medium rounded-tr-none' 
                       : 'glass-panel rounded-tl-none'
@@ -1018,7 +1018,7 @@ export default function App() {
                   )}
                 </div>
                 <span className="text-[10px] mt-1 uppercase tracking-widest opacity-40 font-mono">
-                  {msg.sender === 'user' ? 'USER_AUTH_01' : 'VOID_INTELLIGENCE'}
+                  {msg.sender === 'user' ? 'USER' : 'VOID'}
                 </span>
               </motion.div>
             ))}
@@ -1034,26 +1034,26 @@ export default function App() {
         </div>
 
         {/* Input Area */}
-        <div className="p-6 bg-void-surface/20 border-t border-void-border">
+        <div className="p-4 lg:p-6 bg-void-surface/20 border-t border-void-border safe-area-bottom">
           <form 
             onSubmit={(e) => {
               e.preventDefault();
               handleSendMessage();
             }} 
-            className="relative group"
+            className="relative group max-w-4xl mx-auto"
           >
             <input
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Selecciona una opción abajo..."
-              className="w-full bg-void-bg/50 border border-void-border rounded-xl py-3 lg:py-4 px-4 lg:px-6 pr-12 lg:pr-14 text-sm lg:text-base focus:outline-none focus:border-cyber-pink/50 focus:ring-1 focus:ring-cyber-pink/20 transition-all placeholder:text-slate-600"
+              className="w-full bg-void-bg/50 border border-void-border rounded-xl py-3 lg:py-4 px-4 lg:px-6 pr-12 lg:pr-14 text-base lg:text-base focus:outline-none focus:border-cyber-pink/50 focus:ring-1 focus:ring-cyber-pink/20 transition-all placeholder:text-slate-600"
             />
             <button 
               type="submit"
-              className="absolute right-2 lg:right-3 top-1/2 -translate-y-1/2 p-2 text-cyber-pink hover:bg-cyber-pink/10 rounded-lg transition-colors"
+              className="absolute right-2 lg:right-3 top-1/2 -translate-y-1/2 p-3 text-cyber-pink hover:bg-cyber-pink/10 rounded-lg transition-colors mobile-touch-large"
             >
-              <Send size={16} className="w-4 h-4 lg:w-5 lg:h-5" />
+              <Send size={20} className="w-5 h-5" />
             </button>
           </form>
           <div className="flex gap-2 mt-4 overflow-x-auto pb-2 no-scrollbar">
@@ -1062,7 +1062,7 @@ export default function App() {
                 key={label}
                 type="button"
                 onClick={() => handleSuggestionClick(label)}
-                className="whitespace-nowrap px-3 lg:px-4 py-1.5 lg:py-2 rounded-full border border-void-border text-[9px] lg:text-[10px] font-bold uppercase tracking-widest hover:bg-cyber-pink/10 hover:border-cyber-pink/30 transition-all text-slate-400 hover:text-cyber-pink"
+                className="whitespace-nowrap px-4 py-2 rounded-full border border-void-border text-xs font-bold uppercase tracking-widest hover:bg-cyber-pink/10 hover:border-cyber-pink/30 transition-all text-slate-400 hover:text-cyber-pink mobile-touch-large"
               >
                 {label}
               </button>
@@ -1071,18 +1071,18 @@ export default function App() {
         </div>
       </section>
 
-      {/* Right Side: Gallery (40% or 70% on desktop, 50% on mobile) */}
-      <section className={`${isRightPanelExpanded ? 'lg:w-[70%]' : 'lg:w-[40%]'} w-full bg-void-surface/10 relative overflow-y-auto custom-scrollbar transition-all duration-500 ease-in-out ${currentProject ? 'h-[50vh] lg:h-full' : 'hidden lg:block'}`}>
+      {/* Right Side: Gallery (40% or 70% on desktop, 55% on mobile) */}
+      <section className={`${isRightPanelExpanded ? 'lg:w-[70%]' : 'lg:w-[40%]'} w-full bg-void-surface/10 relative overflow-y-auto custom-scrollbar transition-all duration-500 ease-in-out ${currentProject ? 'h-[55vh] lg:h-full' : 'hidden lg:block'}`}>
         {/* Decorative background glow */}
         <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-cyber-pink/5 blur-[120px] rounded-full" />
           <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-cyber-pink-dim/5 blur-[100px] rounded-full" />
         </div>
 
-        <div className="p-6 lg:p-10 space-y-6 lg:space-y-10 relative z-10">
+        <div className="p-4 lg:p-10 space-y-4 lg:space-y-10 relative z-10">
           <div className="space-y-2">
-            <span className="text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.3em] text-cyber-pink/60">Módulo_Visual</span>
-            <h2 className="font-display text-2xl lg:text-4xl font-bold tracking-tighter uppercase neon-text">Galería de Proyectos</h2>
+            <span className="text-[10px] lg:text-[10px] font-bold uppercase tracking-[0.3em] text-cyber-pink/60">Módulo_Visual</span>
+            <h2 className="font-display text-xl lg:text-4xl font-bold tracking-tighter uppercase neon-text">Galería</h2>
           </div>
 
           <AnimatePresence mode="wait">
@@ -1092,14 +1092,14 @@ export default function App() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="flex flex-col items-center justify-center h-[40vh] lg:h-[60vh] text-center space-y-4 lg:space-y-6 border border-dashed border-void-border rounded-2xl bg-void-surface/5 p-6 lg:p-8"
+                className="flex flex-col items-center justify-center h-[30vh] lg:h-[60vh] text-center space-y-3 lg:space-y-6 border border-dashed border-void-border rounded-2xl bg-void-surface/5 p-4 lg:p-8"
               >
                 <div className="p-3 lg:p-4 rounded-full bg-cyber-pink/10 text-cyber-pink">
                   <Terminal size={24} className="w-6 h-6 lg:w-8 lg:h-8" />
                 </div>
                 <div className="space-y-2">
-                  <p className="text-xs lg:text-sm font-mono uppercase tracking-widest text-slate-400">Esperando selección de módulo...</p>
-                  <p className="text-[10px] lg:text-xs text-slate-600">Utiliza el chat para explorar los proyectos de Laura.</p>
+                  <p className="text-sm lg:text-sm font-mono uppercase tracking-widest text-slate-400">Esperando selección...</p>
+                  <p className="text-xs lg:text-xs text-slate-600">Usa el chat para explorar proyectos.</p>
                 </div>
               </motion.div>
             ) : currentProject.id === 'cv-infographic' ? (
