@@ -1,0 +1,43 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  --color-cyber-pink: #ff71ce;
+  --color-cyber-pink-dim: #b967ff;
+  --color-void-bg: #0f172a;
+  --color-void-surface: #1e293b;
+  --color-void-border: rgba(255, 113, 206, 0.2);
+}
+
+@layer base {
+  body {
+    @apply bg-void-bg text-slate-200 font-sans antialiased overflow-hidden;
+  }
+}
+
+.glass-panel {
+  @apply bg-void-surface/40 backdrop-blur-xl border border-void-border;
+}
+
+.neon-text {
+  text-shadow: 0 0 10px rgba(255, 113, 206, 0.5);
+}
+
+.neon-border {
+  box-shadow: 0 0 15px rgba(255, 113, 206, 0.2);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-void-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-cyber-pink/20 rounded-full hover:bg-cyber-pink/40 transition-colors;
+}
