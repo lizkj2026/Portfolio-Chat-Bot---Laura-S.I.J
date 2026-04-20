@@ -208,12 +208,12 @@ const WelcomeScreen = ({ onComplete }: { onComplete: () => void }) => {
   return (
     <div className={`fixed inset-0 z-50 bg-black flex items-center justify-center transition-opacity duration-1000 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
       <div className="relative w-full h-full flex items-center justify-center">
-        {/* Video Background - Maximum height coverage */}
+        {/* Video Background - Responsive sizing */}
         <video
           autoPlay
           muted
           playsInline
-          className="w-auto h-full max-w-[98vw] object-contain"
+          className="w-auto h-auto max-w-[95vw] max-h-[80vh] lg:max-h-[85vh] object-contain"
           style={{ 
             objectPosition: 'center center'
           }}
@@ -230,25 +230,25 @@ const WelcomeScreen = ({ onComplete }: { onComplete: () => void }) => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70 pointer-events-none" />
         
         {/* Centered content container with proper safe area */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-4" style={{ 
-          paddingBottom: '160px',
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 lg:px-0" style={{ 
+          paddingBottom: '140px',
           paddingTop: '60px'
         }}>
           {/* Content positioned at center */}
-          <div className="text-center space-y-8 max-w-4xl mx-auto">
+          <div className="text-center space-y-6 lg:space-y-8 max-w-4xl mx-auto">
             {/* Loading Animation */}
             <div className="flex items-center justify-center space-x-2">
-              <div className="w-4 h-4 rounded-full bg-cyber-pink animate-pulse shadow-[0_0_20px_#ff71ce]" />
-              <div className="w-4 h-4 rounded-full bg-cyber-pink animate-pulse shadow-[0_0_20px_#ff71ce]" style={{ animationDelay: '0.2s' }} />
-              <div className="w-4 h-4 rounded-full bg-cyber-pink animate-pulse shadow-[0_0_20px_#ff71ce]" style={{ animationDelay: '0.4s' }} />
+              <div className="w-3 h-3 lg:w-4 lg:h-4 rounded-full bg-cyber-pink animate-pulse shadow-[0_0_20px_#ff71ce]" />
+              <div className="w-3 h-3 lg:w-4 lg:h-4 rounded-full bg-cyber-pink animate-pulse shadow-[0_0_20px_#ff71ce]" style={{ animationDelay: '0.2s' }} />
+              <div className="w-3 h-3 lg:w-4 lg:h-4 rounded-full bg-cyber-pink animate-pulse shadow-[0_0_20px_#ff71ce]" style={{ animationDelay: '0.4s' }} />
             </div>
             
             {/* Welcome Text */}
-            <div className="space-y-4">
-              <h1 className="font-display text-5xl md:text-6xl font-bold tracking-tighter text-white uppercase neon-text animate-pulse">
+            <div className="space-y-3 lg:space-y-4">
+              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl lg:text-6xl font-bold tracking-tighter text-white uppercase neon-text animate-pulse">
                 LAURA IZQUIERDO
               </h1>
-              <p className="text-cyber-pink font-mono text-lg md:text-xl uppercase tracking-widest">
+              <p className="text-cyber-pink font-mono text-sm sm:text-base lg:text-lg lg:text-xl uppercase tracking-widest">
                 Portafolio Interactivo
               </p>
             </div>
@@ -259,7 +259,7 @@ const WelcomeScreen = ({ onComplete }: { onComplete: () => void }) => {
                 setFadeOut(true);
                 setTimeout(onComplete, 1000);
               }}
-              className="mt-12 px-8 py-3 glass-panel rounded-full border border-cyber-pink/30 text-cyber-pink text-sm font-bold uppercase tracking-widest hover:bg-cyber-pink/10 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,113,206,0.4)] hover:scale-105"
+              className="mt-8 lg:mt-12 px-6 lg:px-8 py-2.5 lg:py-3 glass-panel rounded-full border border-cyber-pink/30 text-cyber-pink text-xs lg:text-sm font-bold uppercase tracking-widest hover:bg-cyber-pink/10 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,113,206,0.4)] hover:scale-105"
             >
               Saltar introducción →
             </button>
@@ -273,18 +273,18 @@ const WelcomeScreen = ({ onComplete }: { onComplete: () => void }) => {
 const DesignPortfolioView = ({ project }: { project: Project }) => {
   return (
     <div className="w-full h-full animate-in fade-in slide-in-from-right-4 duration-700">
-      <div className="glass-panel w-full h-[calc(100vh-180px)] rounded-2xl border border-void-border overflow-hidden relative">
-        <div className="absolute top-0 left-0 right-0 z-10 bg-void-surface/95 backdrop-blur-sm border-b border-void-border p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3 text-cyber-pink">
-              <Terminal size={16} />
-              <span className="text-sm font-bold uppercase tracking-widest">Portafolio Completo de Diseño Gráfico</span>
+      <div className="glass-panel w-full h-[calc(50vh-120px)] lg:h-[calc(100vh-180px)] rounded-2xl border border-void-border overflow-hidden relative">
+        <div className="absolute top-0 left-0 right-0 z-10 bg-void-surface/95 backdrop-blur-sm border-b border-void-border p-3 lg:p-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div className="flex items-center gap-2 lg:gap-3 text-cyber-pink">
+              <Terminal size={12} className="w-3 h-3 lg:w-4 lg:h-4" />
+              <span className="text-xs lg:text-sm font-bold uppercase tracking-widest">Portafolio Completo de Diseño Gráfico</span>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="text-[10px] font-mono text-slate-400 bg-void-bg/50 px-3 py-1 rounded-full border border-void-border">
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="text-[8px] lg:text-[10px] font-mono text-slate-400 bg-void-bg/50 px-2 lg:px-3 py-1 rounded-full border border-void-border">
                 📜 Scroll completo disponible
               </div>
-              <div className="text-[10px] font-mono text-cyber-pink bg-cyber-pink/10 px-3 py-1 rounded-full border border-cyber-pink/30">
+              <div className="text-[8px] lg:text-[10px] font-mono text-cyber-pink bg-cyber-pink/10 px-2 lg:px-3 py-1 rounded-full border border-cyber-pink/30">
                 PDF Optimizado
               </div>
             </div>
@@ -292,22 +292,22 @@ const DesignPortfolioView = ({ project }: { project: Project }) => {
         </div>
         <iframe 
           src={`${project.pdfUrl}#view=FitV&toolbar=1&navpanes=1&scrollbar=1&zoom=page-width`}
-          className="w-full h-full border-none bg-white mt-16"
+          className="w-full h-full border-none bg-white mt-12 lg:mt-16"
           title="Portafolio de Diseño Gráfico - Laura del S. Izquierdo Jiménez"
           loading="lazy"
         />
       </div>
-      <div className="mt-4 glass-panel p-4 rounded-xl border border-void-border bg-void-surface/5">
-         <div className="flex items-center justify-between">
+      <div className="mt-4 glass-panel p-3 lg:p-4 rounded-xl border border-void-border bg-void-surface/5">
+         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
            <div className="flex items-center gap-2 text-cyber-pink">
-             <Terminal size={12} />
-             <span className="text-[10px] font-bold uppercase tracking-widest">Protocolo_Diseño</span>
+             <Terminal size={10} className="w-3 h-3 lg:w-4 lg:h-4" />
+             <span className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest">Protocolo_Diseño</span>
            </div>
-           <div className="text-[10px] font-mono text-slate-400">
+           <div className="text-[9px] lg:text-[10px] font-mono text-slate-400">
              Laura del S. Izquierdo Jiménez © 2024
            </div>
          </div>
-         <p className="text-[10px] font-mono text-slate-400 leading-relaxed uppercase tracking-widest mt-2">
+         <p className="text-[9px] lg:text-[10px] font-mono text-slate-400 leading-relaxed uppercase tracking-widest mt-2">
            Aviso: Los archivos vectoriales (.ai) son propiedad privada de la autora. 
            Portafolio interactivo especializado en Identidad Visual y Branding Corporativo.
          </p>
@@ -979,23 +979,23 @@ export default function App() {
       {showWelcome && <WelcomeScreen onComplete={() => setShowWelcome(false)} />}
       
       {/* Main App Interface */}
-      <div className={`flex h-screen w-full bg-void-bg text-slate-200 overflow-hidden font-sans transition-opacity duration-1000 ${showWelcome ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-        {/* Left Side: Chat (60% or 30%) */}
-        <section className={`${isRightPanelExpanded ? 'w-[30%]' : 'w-[60%]'} flex flex-col border-r border-void-border bg-void-bg/50 backdrop-blur-sm transition-all duration-500 ease-in-out`}>
+      <div className={`flex flex-col lg:flex-row h-screen w-full bg-void-bg text-slate-200 overflow-hidden font-sans transition-opacity duration-1000 ${showWelcome ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+        {/* Left Side: Chat (60% or 30% on desktop, 100% on mobile) */}
+        <section className={`${isRightPanelExpanded ? 'lg:w-[30%]' : 'lg:w-[60%]'} w-full lg:border-r lg:border-void-border bg-void-bg/50 backdrop-blur-sm transition-all duration-500 ease-in-out flex flex-col ${currentProject ? 'h-[50vh] lg:h-full' : 'h-full'}`}>
         {/* Header */}
-        <header className="p-6 border-b border-void-border flex justify-between items-center">
+        <header className="p-4 lg:p-6 border-b border-void-border flex justify-between items-center">
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 rounded-full bg-cyber-pink animate-pulse shadow-[0_0_10px_#ff71ce]" />
-            <h1 className="font-display font-bold tracking-tighter text-xl uppercase neon-text">VOID_OS // CORE</h1>
+            <h1 className="font-display font-bold tracking-tighter text-lg lg:text-xl uppercase neon-text">VOID_OS // CORE</h1>
           </div>
-          <div className="flex gap-4 text-slate-400">
-            <Terminal size={18} className="hover:text-cyber-pink cursor-pointer transition-colors" />
-            <Info size={18} className="hover:text-cyber-pink cursor-pointer transition-colors" />
+          <div className="flex gap-2 lg:gap-4 text-slate-400">
+            <Terminal size={16} className="w-4 h-4 lg:w-5 lg:h-5 hover:text-cyber-pink cursor-pointer transition-colors" />
+            <Info size={16} className="w-4 h-4 lg:w-5 lg:h-5 hover:text-cyber-pink cursor-pointer transition-colors" />
           </div>
         </header>
 
         {/* Chat Messages */}
-        <div className="flex-1 overflow-y-auto p-8 space-y-6 custom-scrollbar">
+        <div className="flex-1 overflow-y-auto p-4 lg:p-8 space-y-4 lg:space-y-6 custom-scrollbar">
           <AnimatePresence mode="popLayout">
             {messages.map((msg) => (
               <motion.div
@@ -1005,7 +1005,7 @@ export default function App() {
                 className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
               >
                 <div 
-                  className={`max-w-[80%] p-4 rounded-2xl shadow-lg whitespace-pre-wrap ${
+                  className={`max-w-[85%] lg:max-w-[80%] p-3 lg:p-4 rounded-2xl shadow-lg whitespace-pre-wrap text-sm lg:text-base ${
                     msg.sender === 'user' 
                       ? 'bg-cyber-pink text-void-bg font-medium rounded-tr-none' 
                       : 'glass-panel rounded-tl-none'
@@ -1047,13 +1047,13 @@ export default function App() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Selecciona una opción abajo..."
-              className="w-full bg-void-bg/50 border border-void-border rounded-xl py-4 px-6 pr-14 focus:outline-none focus:border-cyber-pink/50 focus:ring-1 focus:ring-cyber-pink/20 transition-all placeholder:text-slate-600"
+              className="w-full bg-void-bg/50 border border-void-border rounded-xl py-3 lg:py-4 px-4 lg:px-6 pr-12 lg:pr-14 text-sm lg:text-base focus:outline-none focus:border-cyber-pink/50 focus:ring-1 focus:ring-cyber-pink/20 transition-all placeholder:text-slate-600"
             />
             <button 
               type="submit"
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-2 text-cyber-pink hover:bg-cyber-pink/10 rounded-lg transition-colors"
+              className="absolute right-2 lg:right-3 top-1/2 -translate-y-1/2 p-2 text-cyber-pink hover:bg-cyber-pink/10 rounded-lg transition-colors"
             >
-              <Send size={20} />
+              <Send size={16} className="w-4 h-4 lg:w-5 lg:h-5" />
             </button>
           </form>
           <div className="flex gap-2 mt-4 overflow-x-auto pb-2 no-scrollbar">
@@ -1062,7 +1062,7 @@ export default function App() {
                 key={label}
                 type="button"
                 onClick={() => handleSuggestionClick(label)}
-                className="whitespace-nowrap px-4 py-1.5 rounded-full border border-void-border text-[10px] font-bold uppercase tracking-widest hover:bg-cyber-pink/10 hover:border-cyber-pink/30 transition-all text-slate-400 hover:text-cyber-pink"
+                className="whitespace-nowrap px-3 lg:px-4 py-1.5 lg:py-2 rounded-full border border-void-border text-[9px] lg:text-[10px] font-bold uppercase tracking-widest hover:bg-cyber-pink/10 hover:border-cyber-pink/30 transition-all text-slate-400 hover:text-cyber-pink"
               >
                 {label}
               </button>
@@ -1071,18 +1071,18 @@ export default function App() {
         </div>
       </section>
 
-      {/* Right Side: Gallery (40% or 70%) */}
-      <section className={`${isRightPanelExpanded ? 'w-[70%]' : 'w-[40%]'} bg-void-surface/10 relative overflow-y-auto custom-scrollbar transition-all duration-500 ease-in-out`}>
+      {/* Right Side: Gallery (40% or 70% on desktop, 50% on mobile) */}
+      <section className={`${isRightPanelExpanded ? 'lg:w-[70%]' : 'lg:w-[40%]'} w-full bg-void-surface/10 relative overflow-y-auto custom-scrollbar transition-all duration-500 ease-in-out ${currentProject ? 'h-[50vh] lg:h-full' : 'hidden lg:block'}`}>
         {/* Decorative background glow */}
         <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-cyber-pink/5 blur-[120px] rounded-full" />
           <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-cyber-pink-dim/5 blur-[100px] rounded-full" />
         </div>
 
-        <div className="p-10 space-y-10 relative z-10">
+        <div className="p-6 lg:p-10 space-y-6 lg:space-y-10 relative z-10">
           <div className="space-y-2">
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyber-pink/60">Módulo_Visual</span>
-            <h2 className="font-display text-4xl font-bold tracking-tighter uppercase neon-text">Galería de Proyectos</h2>
+            <span className="text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.3em] text-cyber-pink/60">Módulo_Visual</span>
+            <h2 className="font-display text-2xl lg:text-4xl font-bold tracking-tighter uppercase neon-text">Galería de Proyectos</h2>
           </div>
 
           <AnimatePresence mode="wait">
@@ -1092,14 +1092,14 @@ export default function App() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="flex flex-col items-center justify-center h-[60vh] text-center space-y-6 border border-dashed border-void-border rounded-2xl bg-void-surface/5"
+                className="flex flex-col items-center justify-center h-[40vh] lg:h-[60vh] text-center space-y-4 lg:space-y-6 border border-dashed border-void-border rounded-2xl bg-void-surface/5 p-6 lg:p-8"
               >
-                <div className="p-4 rounded-full bg-cyber-pink/10 text-cyber-pink">
-                  <Terminal size={32} />
+                <div className="p-3 lg:p-4 rounded-full bg-cyber-pink/10 text-cyber-pink">
+                  <Terminal size={24} className="w-6 h-6 lg:w-8 lg:h-8" />
                 </div>
                 <div className="space-y-2">
-                  <p className="text-sm font-mono uppercase tracking-widest text-slate-400">Esperando selección de módulo...</p>
-                  <p className="text-xs text-slate-600">Utiliza el chat para explorar los proyectos de Laura.</p>
+                  <p className="text-xs lg:text-sm font-mono uppercase tracking-widest text-slate-400">Esperando selección de módulo...</p>
+                  <p className="text-[10px] lg:text-xs text-slate-600">Utiliza el chat para explorar los proyectos de Laura.</p>
                 </div>
               </motion.div>
             ) : currentProject.id === 'cv-infographic' ? (
